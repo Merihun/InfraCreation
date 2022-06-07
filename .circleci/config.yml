@@ -25,7 +25,9 @@ jobs:
             aws cloudformation deploy \
               --template-file template.yml \
               --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}
-      - run: return 1
+      #- run: return 1
+      - destroy_environment
+        when: on_fail
   # Exercise: Config and Deployment
   configure_infrastructure:
     docker:
@@ -50,9 +52,18 @@ jobs:
     steps:
       - run: apk add --update curl
       - run:
-          name: simulate failuer rollback
-          command: return 1
+          name: smoke test
+          command: |
+            URL="https://blog.udacity.com/"
+            # Test if website exists
+            if curl -s --head ${URL} 
+            then
+              return 0
+            else
+              return 1
+            fi
       - destroy_environment
+        when: on_fail
 # Sequential workflow
 workflows:
   # Name the workflow
