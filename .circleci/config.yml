@@ -13,23 +13,23 @@ jobs:
             aws cloudformation deploy \
               --template-file template.yml \
               --stack-name myStack
-    # Exercise: Config and Deployment
+  # Exercise: Config and Deployment
   configure_infrastructure:
     docker:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
       - add_ssh_keys:
-          # You can get this ID in the section where you registered the SSH Key
-          fingerprints: ["1d:b4:d2:cc:c8:a2:8c:98:91:67:8b:86:2c:1b:bf:51"]
+          fingerprints: ["1d:b4:d2:cc:c8:a2:8c:98:91:67:8b:86:2c:1b:bf:51"] # You can get this ID in the section where you registered the SSH Key
       - run:
-          name: Install Ansible
+          name: Install dependencies
           command: |
+            # install the dependencies needed for your playbook
             apk add --update ansible
       - run:
-          name: Run Playbook and Configure server
+          name: Configure server
           command: |
-            ansible-playbook -i inventory playbook.yml
+            ansible-playbook -i inventory.txt main4.yml
 # Sequential workflow
 workflows:
   # Name the workflow
