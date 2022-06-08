@@ -193,7 +193,7 @@ jobs:
           #  aws cloudformation delete-stack --stack-name stack-create-bucket-${CIRCLE_WORKFLOW_ID:0:7}
           #  aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}
 
-# Sequential workflow
+# Sequential workflow -
 workflows:
   build_test_deploy:
     jobs:
