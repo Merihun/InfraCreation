@@ -1,3 +1,4 @@
 *.pem
 *.sh
 *.csv
+.DS_Store

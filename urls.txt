@@ -1,1 +1,5 @@
-[URL01]: https://github.com/Merihun/InfraCreation.git
+[URL01] https://github.com/Merihun/URL01.git
+[URL02] http://mybucket-22b39.s3-website-us-east-1.amazonaws.com
+[URL03] https://d8mfm1h7uzx13.cloudfront.net
+[URL04] http://mybucket-22b39.s3-website-us-east-1.amazonaws.com
+[URL05] http://ec2-35-174-114-3.compute-1.amazonaws.com:9090/targets
