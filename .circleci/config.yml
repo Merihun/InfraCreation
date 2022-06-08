@@ -4,6 +4,7 @@ orbs:
   # Choose either one of the orbs below
   # Declare a dependency on the welcome-orb
   # welcome: circleci/welcome-orb@0.4.1
+  snyk: snyk/snyk@0.0.8
   aws-cli: circleci/aws-cli@2.0.3
 # Orchestrate or schedule a set of jobs
 
@@ -32,6 +33,22 @@ jobs:
   # Exercise: Creating a Simple Workflow
   # Exercise: Environment Variables
   # Exercise: Reusable Job Code
+  build_test:
+    docker:
+      - image: circleci/python:3.7.4
+    steps:
+      - checkout
+      - run:
+          name: Install Python Dependencies
+          command: |
+            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
+            pip install --user -r requirements.txt
+      - snyk/scan
+      - run:
+          name: Run Unit Tests
+          command: |
+            pytest
+
   print_greetings:
     docker:
       - image: circleci/node:13.8.0
@@ -178,6 +195,9 @@ jobs:
 
 # Sequential workflow
 workflows:
+  build_test_deploy:
+    jobs:
+      - build_test
   # Name the workflow
   myWorkflow:
     jobs:
