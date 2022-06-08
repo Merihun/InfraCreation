@@ -195,7 +195,7 @@ jobs:
 
 # Sequential workflow -
 workflows:
-  build_test_deploy:
+  vulnerablity_test:
     jobs:
       - build_test
   # Name the workflow
