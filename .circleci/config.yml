@@ -61,7 +61,7 @@ jobs:
   upload_file:
     docker:
       # - image: circleci/node:13.8.0
-      - jruby:9.3
+      - image: circleci/node:11
     steps:
       - run: echo "THIS IS A SAMPLE TEXT" > ~/output.txt
       - persist_to_workspace:
